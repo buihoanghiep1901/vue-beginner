@@ -1,0 +1,143 @@
+vue vs react:
+    Data= state
+    pinia=redux
+    component
+    props
+    npm
+
+Install vuejs
+    nodejs+ npm
+    npm create vue@latest
+
+Folder structure
+    src:
+        main.ts: file goc
+        App.vue: root component
+        assets: file css
+        components: component con
+        router: chuyen huong trang
+        stores: quan li state
+        views: cac page chinh   
+    
+    component
+        3 thanh phan
+            template: html-> hien thi
+            script: js-> xu ly
+            style: css-> lam dep
+        tao file .vue
+        chung html, css, js vao 1 file
+
+Binding
+    Value binding: {{ }}
+    property binding: v-bind:[ten thuoc tinh]="bien"
+    Class and Style Bindings:  
+        :class='class1'
+        :class='{class1: isShow, class2: isActive}'
+        :class='[class1, class2, {class3: isDone}, isActive ? activeClass : errClass]'
+        :style="{ color: activeColor, fontSize: fontSize + 'px' }"
+
+2 way-binding: bind dua lieu 2 chieu template <=> script (v-model)
+
+Event handler
+    v-on:[event]='function()' 
+    shorthand -> @[event]
+    Inline -> @click="count++/greet()"
+    Method -> @click="greet/greet.hello/"
+    modifier -> Eg: @submit.prevent="onSubmit" (event.preventDefault())
+
+Conditional rendering
+    v-show
+    v-if/v-else/v-else-if
+
+List rendering
+    Array -> v-for="(value, index) in/of values "
+    Object -> v-for="(value, key, index) in/of values"
+    :key =' ' 
+    v-for + v-if not used on the same element
+    Component
+        <MyComponent
+            v-for="(item, index) in items"
+            :item="item"
+            :index="index"
+            :key="item.id"
+        />
+
+reactive() and ref() = useState in React
+    ref
+        every data type
+        count=ref(0) -> count.value++
+        ref()  tu dong unwrap khi trong template, trong reactive() -> <h1>{{count}}</h1>
+    reactive
+        only object 
+        state=reactive({count: 0}) -> state.count++
+
+watch()
+    theo doi su thay doi cua data
+
+    watch(ref/reactive/getter/array, callback)
+        
+        x=ref(0) -> watch(x, (newValue, oldValue)=>{...})
+                    watch(()=>x.value, (newValue, oldValue)=>{...})
+        y=ref(0) -> watch([x, y], ...)
+        
+        state=reactive({x: 0, y: 0}) -> watch(state, callback)  
+        NOTE: callback voi moi su thay doi trong state
+
+        deep watcher
+        eager watcher
+
+Computed Properties
+    computed( ()=>{....} ) -> expect  getter func inside
+    
+    return value = ref -> auto update when reactive dependencies change
+    
+    computed vs Method
+        computed property will only re-evaluate when some of its reactive dependencies change
+        -> multiple access will get pre-computed result, dont have to run getter funct again
+
+        method will always run func when re-render
+
+Form Handling
+    input bindings
+        v-model: input, checkbox, textarea, select, radio,
+            bind multiple checkboxes to array Eg:
+                checkNames = ref([])
+                <input type="checkbox" id="jack" value="Jack" v-model="checkNames">
+
+                <input type="checkbox" id="john" value="John" v-model="checkNames">
+
+                <input type="checkbox" id="mike" value="Mike" v-model="checkNames">
+
+        value  -> binding values are usually static strings (or booleans for checkbox)
+        
+        :value -> bind value to dynamic proppeties
+            :value='{count: 0,
+                    number: 123}'
+
+    modifier
+        .lazy: input event -> 'change' event
+        .number == type='number'
+        .trim: trim whitespace
+
+Lifecycle hooks  
+    create -> add -> update -> destroy
+    beforeCreate
+
+Component
+    .vue file
+    passing prop
+        defineProps(['title']) only in <script setup>
+        defineProps({
+            title: String,
+            ...
+        })
+        <BlogPost :title='abc'/>
+    Listening to Events
+        <BlogPost @increase="count += 1"/>
+        defineEmits(['increase']) only in <script setup>
+        <template>
+            <button @click="$emit('increase')">Enlarge text</button>
+        </template>
+    slot
+    Dynamic Components
+        <component :is="name of component"></component>
