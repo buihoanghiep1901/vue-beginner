@@ -1,3 +1,20 @@
+VUE-NOTEAPP
+    ref
+    v-directives: v-bind, v-model, v-for, v-on,, v-if...
+
+VUE-QUIZAPP
+    ...Vue-NOTEAPP 
+    watch
+    components
+    prop, event handling
+    computed property
+    vue-router: dynamic route
+
+VUE-TASKAPP
+    ...VUE-QUIZAPP
+    Pinia
+    Axios API: Get, post, delete, patch
+
 vue vs react:
     Data= state
     pinia=redux
