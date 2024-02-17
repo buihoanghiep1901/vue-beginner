@@ -1,0 +1,37 @@
+let a: number|string|boolean...
+
+let a=5 -> type number
+    a.toLowerCase  Wrong
+
+var a='123' -> type string
+
+function abc( a:number, b:string, c?:boolena): string{
+    ...
+    return 'abc'
+}
+
+
+type aliases
+
+    type User= {
+        readonly id: string|number
+        name: string
+        phone: number
+        age: number
+    }
+
+    const user: User
+
+union type
+    let a: number | string -> a=7 or a='7'
+    let role: 'admin'|'user'= 'user'
+    type User{
+        name: string
+    }
+    type Admin{
+        username: string
+    }
+
+    let hiep: User | Admin={
+        ...
+    }
