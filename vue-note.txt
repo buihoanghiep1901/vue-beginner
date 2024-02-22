@@ -26,6 +26,12 @@ Install vuejs
     nodejs+ npm
     npm create vue@latest
 
+
+
+
+
+
+
 Folder structure
     src:
         main.ts: file goc
@@ -141,20 +147,72 @@ Lifecycle hooks
     beforeCreate
 
 Component
-    .vue file
-    passing prop
-        defineProps(['title']) only in <script setup>
-        defineProps({
-            title: String,
-            ...
-        })
-        <BlogPost :title='abc'/>
-    Listening to Events
-        <BlogPost @increase="count += 1"/>
-        defineEmits(['increase']) only in <script setup>
-        <template>
-            <button @click="$emit('increase')">Enlarge text</button>
-        </template>
+
+    Registration
+        Global: app.(component name, component)
+        Local: import ...
+
+    Props
+        Props Declaration
+            defineProps(['title']) only in <script setup>
+            defineProps({
+                title: String,
+                id: [String,Number]
+                name: {
+                    type: String
+                    required: true (default is false)
+                }
+
+                age:{
+                    type: Number,
+                    default: 18
+                }
+                ...
+            })
+        
+        Props passing
+            post = {id: 1, title:'abc'}
+            -> <BlogPost v-bind="post" /> === <BlogPost :id="post.id" :title="post.title" />
+
+            <BlogPost :title='post.title'/>
+            <BlogPost :title='[123,'abc',true]'/>
+        
+        Do not mutate props directly, use Computed()/ emit Event
+
+    Events
+        Declaring Emitted Events
+            defineEmits(['increase']) only in <script setup>
+            <template>
+                <button @click="$emit('increase')">Enlarge text</button>
+            </template>
+            --> <BlogPost @increase="count += 1"/>
+
+        Validation
+            const emit= defineEmits({
+                func1: null,  // fun1 has no Validation
+
+                func2: (email, pass)=>{
+                    if (email && password) {
+                        return true
+                    } else {
+                        console.warn('Invalid submit event payload!')
+                        return false
+                    }
+                },  //validate the arguments that passed to func2
+            })
+
     slot
+    
     Dynamic Components
         <component :is="name of component"></component>
+
+Composables
+
+    what is?
+        func that reuse stateful logic
+
+        statefule logic: managing state that changes over time -->Eg: mouse tracker...
+
+    Convention
+        func name: use + camelCase
+        Input Arguments​: can be static or reactive --> use watch/watchEffect
