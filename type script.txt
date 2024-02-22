@@ -24,14 +24,17 @@ type aliases
 
 union type
     let a: number | string -> a=7 or a='7'
+    
     let role: 'admin'|'user'= 'user'
+    
     type User{
         name: string
     }
+   
     type Admin{
         username: string
     }
 
     let hiep: User | Admin={
-        ...
+        username: 'bhh123'
     }
