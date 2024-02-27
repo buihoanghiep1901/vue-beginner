@@ -1,0 +1,3 @@
+Installation
+    npm create vuestic@latest
+    include 

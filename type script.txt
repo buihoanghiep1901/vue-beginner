@@ -38,3 +38,46 @@ union type
     let hiep: User | Admin={
         username: 'bhh123'
     }
+
+
+
+TS in vue
+    props (script setup)
+        const props = defineProps({
+            foo: { type: String, required: true },
+            bar: Number
+        })
+
+        interface Props {
+            foo: string
+            bar?: number
+        }
+        --> const props = defineProps<Props>()
+            
+        --> const props = withDefaults(defineProps<Props>(), {
+                msg: 'hello',
+                labels: () => ['one', 'two']
+            }) // if prop have default value
+
+    Events
+        const emit = defineEmits<{
+            change: [id: number]
+            update: [value: string]
+        }>()
+
+    ref()
+        const age= ref(10) --> type : Ref<number>
+
+        const year: Ref<string | number> = ref('2020')
+
+        const year = ref<string | number>('2020') --> type : Ref<string | number>
+
+    computed()
+        const double = computed(() => count.value++) --> type: ComputedRef<number>
+
+        const double = computed<number>(() => {
+            ...
+        })
+
+
+

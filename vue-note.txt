@@ -216,3 +216,46 @@ Composables
     Convention
         func name: use + camelCase
         Input Arguments​: can be static or reactive --> use watch/watchEffect
+
+Pinia
+    Defining a Store
+        Option Stores
+            useStore= defineStore('Store',{
+                state: ()=>({
+                    name: 'abc' ,
+                    age: 17,
+                }),
+
+                getters:{
+                    ageUp: ( state ) => state.age++,
+                    test2: computed()
+                    // getters func or computed property
+                },
+
+                actions:{
+                    ageIncrease(){
+                        this.age++
+                    },
+                    func2
+                    // function
+                }
+            })
+
+        Setup Stores
+            useStore=defineStore('store', ()=>{
+                //state
+                const name=ref('abc')
+                const age=ref(0)
+
+                //getters
+                const ageUp= computed(() => age.value++ )
+
+                //actions
+                function ageIncreae(){
+                    age.value++
+               }
+
+               return {name. age, ageUp, ageIncrease}
+            })
+            
+    State   
